@@ -1,3 +1,5 @@
+const { Amplify } = aws_amplify;
+
 Amplify.configure({
   Auth: {
     region: "ap-south-1",
@@ -5,3 +7,4 @@ Amplify.configure({
     userPoolWebClientId: "5ul13qn0qutpkd4u44ngso4k59"
   }
 });
+
