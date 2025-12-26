@@ -1,27 +1,49 @@
-// Replace this later with Cognito authentication
+// SIGN UP
+async function signup() {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
 
-function signup() {
-  document.getElementById("message").innerText =
-    "Signup successful 💖 (Cognito will be added)";
+  try {
+    await Amplify.Auth.signUp({
+      username: email,
+      password: password,
+      attributes: { email }
+    });
+    document.getElementById("message").innerText =
+      "Signup successful 🌸 Please check your email to verify.";
+  } catch (err) {
+    document.getElementById("message").innerText = err.message;
+  }
 }
 
-function login() {
-  window.location.href = "dashboard.html";
+// LOGIN
+async function login() {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  try {
+    await Amplify.Auth.signIn(email, password);
+    window.location.href = "dashboard.html";
+  } catch (err) {
+    document.getElementById("message").innerText = err.message;
+  }
 }
 
-function logout() {
+// LOGOUT
+async function logout() {
+  await Amplify.Auth.signOut();
   window.location.href = "index.html";
 }
 
-// Notes logic (API ready)
-function addNote() {
-  const noteText = document.getElementById("noteInput").value;
-  if (!noteText) return;
+// PROTECT DASHBOARD
+async function checkAuth() {
+  try {
+    await Amplify.Auth.currentAuthenticatedUser();
+  } catch {
+    window.location.href = "index.html";
+  }
+}
 
-  const noteDiv = document.createElement("div");
-  noteDiv.className = "note";
-  noteDiv.innerText = noteText;
-
-  document.getElementById("notesContainer").appendChild(noteDiv);
-  document.getElementById("noteInput").value = "";
+if (window.location.pathname.includes("dashboard")) {
+  checkAuth();
 }
