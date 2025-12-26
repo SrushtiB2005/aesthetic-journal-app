@@ -1,7 +1,5 @@
 const { Auth } = aws_amplify;
 
-
-
 // SIGN UP
 async function signup() {
   const email = document.getElementById("email").value;
@@ -14,7 +12,7 @@ async function signup() {
       attributes: { email }
     });
     document.getElementById("message").innerText =
-      "Signup successful 🌸 Please check your email to verify.";
+      "Signup successful 🌸 Check your email to verify.";
   } catch (err) {
     document.getElementById("message").innerText = err.message;
   }
@@ -51,5 +49,3 @@ async function checkAuth() {
 if (window.location.pathname.includes("dashboard")) {
   checkAuth();
 }
-
-
