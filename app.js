@@ -1,3 +1,4 @@
+console.log("Amplify loaded:", Amplify);
 // SIGN UP
 async function signup() {
   const email = document.getElementById("email").value;
@@ -47,3 +48,4 @@ async function checkAuth() {
 if (window.location.pathname.includes("dashboard")) {
   checkAuth();
 }
+
