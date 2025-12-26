@@ -1,11 +1,14 @@
-console.log("Amplify loaded:", Amplify);
+const { Auth } = aws_amplify;
+
+
+
 // SIGN UP
 async function signup() {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
   try {
-    await Amplify.Auth.signUp({
+    await Auth.signUp({
       username: email,
       password: password,
       attributes: { email }
@@ -23,7 +26,7 @@ async function login() {
   const password = document.getElementById("password").value;
 
   try {
-    await Amplify.Auth.signIn(email, password);
+    await Auth.signIn(email, password);
     window.location.href = "dashboard.html";
   } catch (err) {
     document.getElementById("message").innerText = err.message;
@@ -32,14 +35,14 @@ async function login() {
 
 // LOGOUT
 async function logout() {
-  await Amplify.Auth.signOut();
+  await Auth.signOut();
   window.location.href = "index.html";
 }
 
 // PROTECT DASHBOARD
 async function checkAuth() {
   try {
-    await Amplify.Auth.currentAuthenticatedUser();
+    await Auth.currentAuthenticatedUser();
   } catch {
     window.location.href = "index.html";
   }
@@ -48,4 +51,5 @@ async function checkAuth() {
 if (window.location.pathname.includes("dashboard")) {
   checkAuth();
 }
+
 
