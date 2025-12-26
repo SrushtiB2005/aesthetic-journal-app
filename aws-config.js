@@ -1,7 +1,7 @@
 Amplify.configure({
   Auth: {
     region: "ap-south-1",
-    userPoolId: "YOUR_USER_POOL_ID",
-    userPoolWebClientId: "YOUR_APP_CLIENT_ID"
+    userPoolId: "ap-south-1_hjXm4aBOK",
+    userPoolWebClientId: "5ul13qn0qutpkd4u44ngso4k59"
   }
 });
