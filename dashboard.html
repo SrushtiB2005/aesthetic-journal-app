@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>My Journal ✨</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="dashboard-body">
+    <nav>
+      <h2>🌷 My Journal</h2>
+      <button onclick="logout()">Logout</button>
+    </nav>
+
+    <div class="container">
+      <textarea id="noteInput" placeholder="Write something cute 💕"></textarea>
+      <button onclick="addNote()">Add Note</button>
+
+      <div id="notesContainer"></div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
