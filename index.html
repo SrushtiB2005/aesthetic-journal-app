@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Aesthetic Journal</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <title>Aesthetic Journal ✨</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body class="auth-body">
 
@@ -11,19 +12,16 @@
     <h1>🌸 Aesthetic Journal</h1>
     <p>Your personal space</p>
 
-    <input id="email" type="email" placeholder="Email" />
-    <input id="password" type="password" placeholder="Password" />
+    <input type="email" id="email" placeholder="Email" />
+    <input type="password" id="password" placeholder="Password" />
 
     <button onclick="login()">Login</button>
-    <button onclick="signup()" class="secondary">Sign Up</button>
+    <button class="secondary" onclick="signup()">Sign Up</button>
 
     <p id="message"></p>
   </div>
-
-  <!-- Cognito SDK (OFFICIAL) -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/amazon-cognito-identity-js/6.3.7/amazon-cognito-identity.min.js"></script>
-
-  <!-- Your app logic -->
+  <script src="https://unpkg.com/aws-amplify@5.3.8/dist/aws-amplify.min.js"></script>
+  <script src="aws-config.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
