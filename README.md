@@ -21,5 +21,5 @@ A cute aesthetic serverless journal web app using AWS Amplify, Cognito, Lambda &
 - Store notes in DynamoDB
 - Add delete & edit functionality
 
-
+---
 Built with 💖 by Srushti
