@@ -1,33 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>My Journal ✨</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body class="dashboard-body">
-    <nav>
-      <h2>🌷 My Journal</h2>
-      <button onclick="logout()">Logout</button>
-    </nav>
+<head>
+  <meta charset="UTF-8" />
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="dashboard-body">
 
-    <div class="container">
-      <textarea id="noteInput" placeholder="Write something cute 💕"></textarea>
-      <button onclick="addNote()">Add Note</button>
+  <h2>Welcome to your journal 💖</h2>
+  <button onclick="logout()">Logout</button>
 
-      <div id="notesContainer"></div>
-    </div>
-
-    
-    <script src="https://unpkg.com/aws-amplify@5.3.8/dist/aws-amplify.min.js"></script>
-    <script src="aws-config.js"></script>
-    <script src="app.js"></script>
-
-  </body>
-
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/amazon-cognito-identity-js/6.3.7/amazon-cognito-identity.min.js"></script>
+  <script src="app.js"></script>
+</body>
 </html>
-
-
-
-
