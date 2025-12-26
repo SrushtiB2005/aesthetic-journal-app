@@ -1,49 +1,60 @@
+const poolData = {
+  UserPoolId: "ap-south-1_hjXm4aBOK",        // YOUR USER POOL ID
+  ClientId: "5ul13qn0qutpkd4u44ngso4k59"           // SPA APP CLIENT ID (NO SECRET)
+};
+
+const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
+
 // SIGN UP
-async function signup() {
+function signup() {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
-  try {
-    await Amplify.Auth.signUp({
-      username: email,
-      password: password,
-      attributes: { email }
-    });
+  const attributeList = [
+    new AmazonCognitoIdentity.CognitoUserAttribute({
+      Name: "email",
+      Value: email,
+    }),
+  ];
+
+  userPool.signUp(email, password, attributeList, null, function (err, result) {
+    if (err) {
+      document.getElementById("message").innerText = err.message;
+      return;
+    }
     document.getElementById("message").innerText =
-      "Signup successful 🌸 Please check your email to verify.";
-  } catch (err) {
-    document.getElementById("message").innerText = err.message;
-  }
+      "Signup successful 🌸 Check your email to verify.";
+  });
 }
 
 // LOGIN
-async function login() {
+function login() {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
-  try {
-    await Amplify.Auth.signIn(email, password);
-    window.location.href = "dashboard.html";
-  } catch (err) {
-    document.getElementById("message").innerText = err.message;
-  }
+  const authDetails = new AmazonCognitoIdentity.AuthenticationDetails({
+    Username: email,
+    Password: password,
+  });
+
+  const cognitoUser = new AmazonCognitoIdentity.CognitoUser({
+    Username: email,
+    Pool: userPool,
+  });
+
+  cognitoUser.authenticateUser(authDetails, {
+    onSuccess: function () {
+      window.location.href = "dashboard.html";
+    },
+    onFailure: function (err) {
+      document.getElementById("message").innerText = err.message;
+    },
+  });
 }
 
 // LOGOUT
-async function logout() {
-  await Amplify.Auth.signOut();
+function logout() {
+  const user = userPool.getCurrentUser();
+  if (user) user.signOut();
   window.location.href = "index.html";
-}
-
-// PROTECT DASHBOARD
-async function checkAuth() {
-  try {
-    await Amplify.Auth.currentAuthenticatedUser();
-  } catch {
-    window.location.href = "index.html";
-  }
-}
-
-if (window.location.pathname.includes("dashboard")) {
-  checkAuth();
 }
